@@ -26,7 +26,7 @@ const playMusic: tool<{
       .optional()
       .describe('The Spotify device ID to play on'),
   },
-  handler: async (args, extra: RequestHandlerExtra) => {
+  handler: async (args, extra: RequestHandlerExtra<any, any>) => {
     const { uri, type, id, deviceId } = args;
 
     if (!uri && (!type || !id)) {
@@ -85,7 +85,7 @@ const pausePlayback: tool<{
       .optional()
       .describe('The Spotify device ID to pause playback on'),
   },
-  handler: async (args, extra: RequestHandlerExtra) => {
+  handler: async (args, extra: RequestHandlerExtra<any, any>) => {
     const { deviceId } = args;
 
     await handleSpotifyRequest(async (spotifyApi) => {
@@ -114,7 +114,7 @@ const skipToNext: tool<{
       .optional()
       .describe('The Spotify device ID to skip on'),
   },
-  handler: async (args, extra: RequestHandlerExtra) => {
+  handler: async (args, extra: RequestHandlerExtra<any, any>) => {
     const { deviceId } = args;
 
     await handleSpotifyRequest(async (spotifyApi) => {
@@ -144,7 +144,7 @@ const skipToPrevious: tool<{
       .optional()
       .describe('The Spotify device ID to skip on'),
   },
-  handler: async (args, extra: RequestHandlerExtra) => {
+  handler: async (args, extra: RequestHandlerExtra<any, any>) => {
     const { deviceId } = args;
 
     await handleSpotifyRequest(async (spotifyApi) => {
@@ -180,7 +180,7 @@ const createPlaylist: tool<{
       .optional()
       .describe('Whether the playlist should be public'),
   },
-  handler: async (args, extra: RequestHandlerExtra) => {
+  handler: async (args, extra: RequestHandlerExtra<any, any>) => {
     const { name, description, public: isPublic = false } = args;
 
     const result = await handleSpotifyRequest(async (spotifyApi) => {
@@ -220,7 +220,7 @@ const addTracksToPlaylist: tool<{
       .optional()
       .describe('Position to insert the tracks (0-based index)'),
   },
-  handler: async (args, extra: RequestHandlerExtra) => {
+  handler: async (args, extra: RequestHandlerExtra<any, any>) => {
     const { playlistId, trackIds, position } = args;
 
     if (trackIds.length === 0) {
@@ -281,7 +281,7 @@ const resumePlayback: tool<{
       .optional()
       .describe('The Spotify device ID to resume playback on'),
   },
-  handler: async (args, extra: RequestHandlerExtra) => {
+  handler: async (args, extra: RequestHandlerExtra<any, any>) => {
     const { deviceId } = args;
 
     await handleSpotifyRequest(async (spotifyApi) => {
